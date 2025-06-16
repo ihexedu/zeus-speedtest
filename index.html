@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Zeus IT & Security - Network Speed Test</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: 'Times New Roman', serif;
+      text-align: center;
+      margin: 40px;
+      background: #000;
+      color: #fff;
+    }
+    h1 {
+      margin-bottom: 0.5em;
+    }
+    #testArea {
+      margin-top: 20px;
+      font-size: 1.25em;
+    }
+  </style>
+</head>
+<body>
+  <h1>Network Speed Test</h1>
+  <p>Check your connection before a remote support session or site visit.</p>
+  <script src="speedtest.js"></script>
+  <div id="testArea">Testing...</div>
+  <script>
+    const s = new Speedtest();
+    s.onupdate = data => {
+      document.getElementById('testArea').innerHTML = `
+        <p>Ping: ${data.ping} ms</p>
+        <p>Download: ${data.download} Mbps</p>
+        <p>Upload: ${data.upload} Mbps</p>
+      `;
+    };
+    s.onend = () => {};
+    s.start();
+  </script>
+</body>
+</html>
